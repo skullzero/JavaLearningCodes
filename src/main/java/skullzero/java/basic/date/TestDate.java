@@ -5,10 +5,17 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.TimeZone;
+import org.junit.Test;
 
 public class TestDate 
 {
-    public static void main(String[] args)
+    @Test
+    public void startTesting()
+    {
+    	TestDateFormat();
+    }
+	
+	public void TestDateFormat()
     {
         try
         {
