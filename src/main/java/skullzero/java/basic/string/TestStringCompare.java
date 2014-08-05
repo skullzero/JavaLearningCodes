@@ -32,5 +32,12 @@ public class TestStringCompare
 		System.out.println("if stringH == stringI? " + (stringH == stringI));
 		//equals比较对象实质内容是否相同
 		System.out.println("if stringH equals stringI? " + (stringH.equals(stringI)));
+		
+		StringBuilder stringJ = new StringBuilder("ddd");
+		stringJ.append("bbb");
+		System.out.println("if stringI == stringJ? " + (stringI == stringJ.toString()));
+		System.out.println("if stringI == stringJ? " + (stringI.equals(stringJ.toString())));
+		//System.out.println(stringA.hashCode());
+		//System.out.println(stringB.hashCode());
 	}
 }
