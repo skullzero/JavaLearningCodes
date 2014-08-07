@@ -12,7 +12,7 @@ public class TestStringAPI
 		String[] splitResult = s.split(" ");
 		for(String temp : splitResult)
 		{
-			System.out.println(temp);	
+			System.out.println(temp);
 		}
 	}
 }
