@@ -5,56 +5,98 @@ import java.io.*;
 
 public class TestStream 
 {
+	//Readers
+	private Reader is;
+	private BufferedReader bis;
+	private BufferedReader bis2;
+	private StringReader sr;
+	//Writers
+	private Writer out;
+	private BufferedWriter bw;
+	//Others
+	private char[] inChar;
+	private char[] charArray;
+	
 	@Test
 	public void testingStart()
-	{
+	{		
 		try
 		{
 			System.out.println("System encoding is " + System.getProperty("file.encoding"));			
 			
-			//windows下结尾处有两个不可见的特殊字符(CR和LF)
-			Reader is = new FileReader("C:/temp/inputTxt.txt");
-			char[] inChar = new char[200];
-			is.read(inChar);
-			System.out.println("----------FileReader Testing Begin----------");
-			System.out.println(inChar);
-			
-			//BufferedReader为装饰器类，其必须包裹一个已有Reader来创建
-			BufferedReader bis = new BufferedReader(new FileReader("C:/temp/inputTxt.txt"));
-			BufferedReader bis2 = new BufferedReader(new InputStreamReader(System.in));
-			System.out.println("----------BufferedReader Testing Begin----------");
-			//readLine一次读取一行
-			System.out.println(bis.readLine());
-			System.out.println(bis2.readLine());
-			
-			//StringReader将字符串作为源来读取
-			StringReader sr = new StringReader("This is a testing string.");
-			System.out.println("----------StringReader Testing Begin----------");
-			char[] charArray = new char[30];
-			sr.read(charArray);
-			for(char temp : charArray)
-			{
-				System.out.print(temp + "/");	
-			}
-			
-			is.close();
-			bis.close();
-			sr.close();
-			
-			
-			Writer out = new FileWriter("C:/temp/inputTxt2.txt");
-			out.write(inChar);
-			out.flush();
-		
-			BufferedWriter bw = new BufferedWriter(out);
-			
-			out.close();
-			bw.close();
+			testFileReader();
+			testBufferedReader();
+			testStringReader();
+			testFileWriter();
 		}
 		catch(IOException io)
 		{
 			io.printStackTrace();
 		}
+		finally
+		{
+			try
+			{
+				is.close();
+				bis.close();
+				sr.close();
+				out.close();
+				//bw.close();			
+			}
+			catch(IOException io)
+			{
+				io.printStackTrace();
+			}
+		}
 		
+	}
+	
+	private void testFileReader() throws IOException
+	{
+		//windows下结尾处有两个不可见的特殊字符(CR和LF)
+		is = new FileReader("C:/temp/inputTxt.txt");
+		inChar = new char[200];
+		is.read(inChar);
+		System.out.println("----------FileReader Testing Begin----------");
+		System.out.println(inChar);			
+	}	
+	
+	private void testBufferedReader() throws IOException
+	{
+		//BufferedReader(缓冲流)为装饰器类，其必须包裹一个已有Reader(节点流)来创建
+		//此处System.in如果从控制台输入中文，会显示乱码。因为工程和控制台都是UTF-8编码，而
+		//键盘输入的则是GBK
+		bis = new BufferedReader(new FileReader("C:/temp/inputTxt.txt"));
+		System.out.println("----------BufferedReader Testing 1 Begin----------");
+		//readLine一次读取一行
+		String tempString;
+		while((tempString=bis.readLine()) != null)
+		{
+			System.out.println(tempString);	
+		}
+		
+		System.out.println("----------BufferedReader Testing 2 Begin----------");
+		bis2 = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println(bis2.readLine());
+	}
+	
+	private void testStringReader() throws IOException
+	{
+		//StringReader将字符串作为源来读取
+		sr = new StringReader("This is a testing string.");
+		System.out.println("----------StringReader Testing Begin----------");
+		charArray = new char[30];
+		sr.read(charArray);
+		for(char temp : charArray)
+		{
+			System.out.print(temp + "/");	
+		}
+	}
+	
+	private void testFileWriter() throws IOException
+	{
+		Writer out = new FileWriter("C:/temp/inputTxt2.txt");
+		out.write(inChar);
+		out.flush();
 	}
 }
