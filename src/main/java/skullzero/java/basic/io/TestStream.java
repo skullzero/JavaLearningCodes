@@ -16,6 +16,8 @@ public class TestStream
 	//Others
 	private char[] inChar;
 	private char[] charArray;
+	private String testFile;
+	private String os;
 	
 	@Test
 	public void testingStart()
@@ -23,6 +25,15 @@ public class TestStream
 		try
 		{
 			System.out.println("System encoding is " + System.getProperty("file.encoding"));			
+			os = System.getProperty("os.name");
+			if(os.equals("Windows"))
+			{
+				testFile = "C:/temp/inputTxt.txt";
+			}
+			else if(os.indexOf("Mac OS") != -1)
+			{
+				testFile = "/Users/onion/Documents/Development/temp/inputTxt";
+			}			
 			
 			testFileReader();
 			testBufferedReader();
@@ -54,7 +65,7 @@ public class TestStream
 	private void testFileReader() throws IOException
 	{
 		//windows下结尾处有两个不可见的特殊字符(CR和LF)
-		is = new FileReader("C:/temp/inputTxt.txt");
+		is = new FileReader(testFile);
 		inChar = new char[200];
 		is.read(inChar);
 		System.out.println("----------FileReader Testing Begin----------");
@@ -66,7 +77,7 @@ public class TestStream
 		//BufferedReader(缓冲流)为装饰器类，其必须包裹一个已有Reader(节点流)来创建
 		//此处System.in如果从控制台输入中文，会显示乱码。因为工程和控制台都是UTF-8编码，而
 		//键盘输入的则是GBK
-		bis = new BufferedReader(new FileReader("C:/temp/inputTxt.txt"));
+		bis = new BufferedReader(new FileReader(testFile));
 		System.out.println("----------BufferedReader Testing 1 Begin----------");
 		//readLine一次读取一行
 		String tempString;
@@ -95,7 +106,7 @@ public class TestStream
 	
 	private void testFileWriter() throws IOException
 	{
-		Writer out = new FileWriter("C:/temp/inputTxt2.txt");
+		Writer out = new FileWriter(testFile);
 		out.write(inChar);
 		out.flush();
 	}
