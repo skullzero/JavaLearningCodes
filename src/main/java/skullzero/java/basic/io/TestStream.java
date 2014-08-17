@@ -6,18 +6,24 @@ import java.io.*;
 public class TestStream 
 {
 	//Readers
-	private Reader is;
-	private BufferedReader bis;
-	private BufferedReader bis2;
+	private Reader reader;
+	private BufferedReader br;
+	private BufferedReader br2;
 	private StringReader sr;
 	//Writers
 	private Writer out;
 	private BufferedWriter bw;
+	//Stream
+	private FileInputStream fis;
+	private BufferedInputStream bis;
+	private InputStream is;
+	
 	//Others
 	private char[] inChar;
 	private char[] charArray;
 	private String testFile;
 	private String os;
+	private byte[] inByte;
 	
 	@Test
 	public void testingStart()
@@ -39,6 +45,7 @@ public class TestStream
 			testBufferedReader();
 			testStringReader();
 			testFileWriter();
+			testFileInputStream();
 		}
 		catch(IOException io)
 		{
@@ -48,10 +55,11 @@ public class TestStream
 		{
 			try
 			{
-				is.close();
-				bis.close();
+				reader.close();
+				br.close();
 				sr.close();
 				out.close();
+				fis.close();
 				//bw.close();			
 			}
 			catch(IOException io)
@@ -65,11 +73,12 @@ public class TestStream
 	private void testFileReader() throws IOException
 	{
 		//windows下结尾处有两个不可见的特殊字符(CR和LF)
-		is = new FileReader(testFile);
+		reader = new FileReader(testFile);
 		inChar = new char[200];
-		is.read(inChar);
+		reader.read(inChar);
 		System.out.println("----------FileReader Testing Begin----------");
 		System.out.println(inChar);			
+		//System.out.println(Character.SIZE);
 	}	
 	
 	private void testBufferedReader() throws IOException
@@ -77,18 +86,18 @@ public class TestStream
 		//BufferedReader(缓冲流)为装饰器类，其必须包裹一个已有Reader(节点流)来创建
 		//此处System.in如果从控制台输入中文，会显示乱码。因为工程和控制台都是UTF-8编码，而
 		//键盘输入的则是GBK
-		bis = new BufferedReader(new FileReader(testFile));
+		br = new BufferedReader(new FileReader(testFile));
 		System.out.println("----------BufferedReader Testing 1 Begin----------");
 		//readLine一次读取一行
 		String tempString;
-		while((tempString=bis.readLine()) != null)
+		while((tempString=br.readLine()) != null)
 		{
 			System.out.println(tempString);	
 		}
 		
 		System.out.println("----------BufferedReader Testing 2 Begin----------");
-		bis2 = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println(bis2.readLine());
+		br2 = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println(br2.readLine());
 	}
 	
 	private void testStringReader() throws IOException
@@ -102,6 +111,7 @@ public class TestStream
 		{
 			System.out.print(temp + "/");	
 		}
+		System.out.println("");
 	}
 	
 	private void testFileWriter() throws IOException
@@ -110,4 +120,22 @@ public class TestStream
 		out.write(inChar);
 		out.flush();
 	}
+	
+	//---------------------------------------------------------------------------------------------
+	private void testFileInputStream() throws IOException
+	{
+		//FileInputStream每次从文件中读入一个字节
+		fis = new FileInputStream(testFile);
+		inByte = new byte[2];
+		fis.read(inByte);
+		System.out.println("----------FileInputaStream Testing Begin----------");
+		System.out.println(new String(inByte));
+	}
+	
+	private void testBufferedInputStream() throws IOException
+	{
+		bis = new BufferedInputStream(fis);
+		
+	}
+	
 }
