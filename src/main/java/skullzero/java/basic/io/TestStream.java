@@ -3,6 +3,17 @@ package skullzero.java.basic.io;
 import org.junit.*;
 import java.io.*;
 
+/*
+ * BufferedReader
+ * StringReader
+ * BufferedWriter
+ * FileWriter
+ * FileInputStream
+ * BufferedInputStream
+ * InputStreamReader
+ * 
+ */
+
 public class TestStream 
 {
 	//Readers
@@ -15,6 +26,7 @@ public class TestStream
 	private BufferedWriter bw;
 	//Stream
 	private FileInputStream fis;
+	private FileInputStream fis2;
 	private BufferedInputStream bis;
 	private InputStream is;
 	
@@ -22,8 +34,12 @@ public class TestStream
 	private char[] inChar;
 	private char[] charArray;
 	private String testFile;
+	private String testFile2;
 	private String os;
 	private byte[] inByte;
+	private byte[] inByte2;
+	private long startTime;
+	private long endTime;
 	
 	@Test
 	public void testingStart()
@@ -34,7 +50,8 @@ public class TestStream
 			os = System.getProperty("os.name");
 			if(os.indexOf("Windows") != -1)
 			{
-				testFile = "C:/temp/inputTxt.txt";
+				testFile  = "C:/temp/inputTxt.txt";
+				testFile2 = "C:/temp/mule-config.txt";
 			}
 			else if(os.indexOf("Mac OS") != -1)
 			{
@@ -46,6 +63,7 @@ public class TestStream
 			testStringReader();
 			testFileWriter();
 			testFileInputStream();
+			testBufferedInputStream();
 		}
 		catch(IOException io)
 		{
@@ -58,8 +76,9 @@ public class TestStream
 				reader.close();
 				br.close();
 				sr.close();
-				out.close();
+				//out.close();
 				fis.close();
+				bis.close();
 				//bw.close();			
 			}
 			catch(IOException io)
@@ -95,7 +114,7 @@ public class TestStream
 			System.out.println(tempString);	
 		}
 		
-		//InputStreamReader是字节流和字符流之间的桥梁
+		//InputStreamReader是字节流 =>字符流之间的桥梁
 		System.out.println("----------BufferedReader Testing 2 Begin----------");
 		br2 = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println(br2.readLine());
@@ -117,26 +136,42 @@ public class TestStream
 	
 	private void testFileWriter() throws IOException
 	{
-		Writer out = new FileWriter(testFile);
-		out.write(inChar);
-		out.flush();
+		//Writer out = new FileWriter(testFile);
+		//out.write(inChar);
+		//out.flush();
 	}
 	
 	//---------------------------------------------------------------------------------------------
+	
 	private void testFileInputStream() throws IOException
 	{
 		//FileInputStream每次从文件中读入一个字节
-		fis = new FileInputStream(testFile);
-		inByte = new byte[2];
-		fis.read(inByte);
 		System.out.println("----------FileInputaStream Testing Begin----------");
-		System.out.println(new String(inByte));
+		fis = new FileInputStream(testFile2);
+		inByte = new byte[1024];
+		startTime = System.currentTimeMillis();
+		while(fis.read(inByte) != -1)
+		{
+			//byte类型转换为String类型
+			//System.out.println(new String(inByte));
+		}
+		endTime = System.currentTimeMillis();
+		System.out.println("Used " + (endTime - startTime) + " milliseconds");
 	}
 	
 	private void testBufferedInputStream() throws IOException
 	{
-		bis = new BufferedInputStream(fis);
-		
+		System.out.println("----------BufferedInputaStream Testing Begin----------");
+		fis2 = new FileInputStream(testFile2); 
+		inByte2 = new byte[1024];
+		bis = new BufferedInputStream(fis2);
+		startTime = System.currentTimeMillis();
+		while(bis.read(inByte2) != -1)
+		{
+			//System.out.println(new String(inByte));
+		}		
+		endTime = System.currentTimeMillis();
+		System.out.println("Used " + (endTime - startTime) + " milliseconds");
 	}
 	
 }
