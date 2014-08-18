@@ -26,7 +26,7 @@ public class TestStream
 		{
 			System.out.println("System encoding is " + System.getProperty("file.encoding"));			
 			os = System.getProperty("os.name");
-			if(os.equals("Windows"))
+			if(os.indexOf("Windows") != -1)
 			{
 				testFile = "C:/temp/inputTxt.txt";
 			}
@@ -86,6 +86,7 @@ public class TestStream
 			System.out.println(tempString);	
 		}
 		
+		//InputStreamReader是字节流和字符流之间的桥梁
 		System.out.println("----------BufferedReader Testing 2 Begin----------");
 		bis2 = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println(bis2.readLine());
