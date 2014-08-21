@@ -29,6 +29,7 @@ public class TestStream
 	private FileInputStream fis2;
 	private BufferedInputStream bis;
 	private InputStream is;
+	private FileOutputStream fos;
 	
 	//Others
 	private char[] inChar;
@@ -172,6 +173,12 @@ public class TestStream
 		}		
 		endTime = System.currentTimeMillis();
 		System.out.println("Used " + (endTime - startTime) + " milliseconds");
+	}
+	
+	private void testFileOputStream() throws IOException
+	{
+		fos = new FileOutputStream(testFile);
+		
 	}
 	
 }
