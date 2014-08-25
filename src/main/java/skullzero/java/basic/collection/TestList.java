@@ -16,7 +16,7 @@ public class TestList
 	
 	private void testArrayList()
 	{
-		//ArrayList是非线程安全的，Vector是
+		//ArrayList不是线程安全的，Vector是
 		//适合有排序需求的情况
 		arrayList = new ArrayList<String>();
 		
