@@ -64,5 +64,16 @@ public class TestSet
 		stuSet2.add(student2_4);
 		System.out.println("Student2 Set Size is " + stuSet2.size());
 		System.out.println(stuSet2);
+		
+		/*
+		 * 3.测试Iterator
+		 */
+		Iterator<Student2> itorStud2 = stuSet2.iterator();
+		Student2 tempStu2;
+		while(itorStud2.hasNext())
+		{
+			tempStu2 = itorStud2.next();
+			System.out.println(tempStu2.name + "'s number is " + tempStu2.number);
+		}
 	}
 }
