@@ -3,7 +3,7 @@ package skullzero.java.basic.collection;
 import java.util.*;
 import org.junit.*;
 
-public class TestSet 
+public class TestSet
 {
 	private HashSet<String> hs;
 	
