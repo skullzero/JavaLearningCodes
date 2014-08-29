@@ -19,6 +19,10 @@ public class Student2 implements Comparable<Student2>
 		this.score = score;
 	}
 
+	/*
+	 * 使Stuedent2的对象可以被System.out.println()直接输出
+	 * 
+	 */
 	@Override
 	public String toString()
 	{
