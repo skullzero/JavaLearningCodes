@@ -39,7 +39,7 @@ public class TestList
 		 System.out.println(arrayList.toString());
 		 
 		 /*
-		 * 4.测试排序, 按分数排序
+		 * 4.测试排序, 按分数排序, Comparable方式
 		 */
 		 student2List = new ArrayList<Student2>();
 		 Student2 student3_1 = new Student2("aaa", "00001", 70);
@@ -53,7 +53,16 @@ public class TestList
 		 student2List.add(student3_4);
 		 student2List.add(student3_5);
 		 Collections.sort(student2List);
+		 System.out.println("-------------排序测试1------------");
 		 System.out.println(student2List.toString());
+		 
+		 /*
+		  * 5. 测试排序，按分数排序, Comparator方式，重载的sort()
+		  */
+		 Collections.sort(student2List, new StudentComparator());
+		 System.out.println("-------------排序测试2------------");
+		 System.out.println(student2List.toString());
+		 
 
 	}
 }

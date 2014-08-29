@@ -5,8 +5,6 @@ import org.junit.*;
 
 public class TestSet
 {
-	private HashSet<String> hs;
-	
 	@Test
 	public void startTesting()
 	{
@@ -27,6 +25,8 @@ public class TestSet
 		}
 		//no dupilcated items
 		System.out.println(words);
+		
+		scanner.close();
 	}
 	
 	private void testHashCode()
@@ -75,5 +75,32 @@ public class TestSet
 			tempStu2 = itorStud2.next();
 			System.out.println(tempStu2.name + "'s number is " + tempStu2.number);
 		}
+		
+		/*
+		 * 4.测试TreeSet排序, 指定Comparator方式
+		 */
+		 TreeSet<Student2> stuTreeSet = new TreeSet<Student2>(new StudentComparator());
+		 Student2 student3_1 = new Student2("aaa", "00001", 2);
+		 Student2 student3_2 = new Student2("bbb", "00002", 92);
+		 Student2 student3_3 = new Student2("ccc", "00003", 50);
+		 Student2 student3_4 = new Student2("ddd", "00004", 100);
+		 Student2 student3_5 = new Student2("eee", "00005", 15);
+		 stuTreeSet.add(student3_1);
+		 stuTreeSet.add(student3_2);
+		 stuTreeSet.add(student3_3);
+		 stuTreeSet.add(student3_4);
+		 stuTreeSet.add(student3_5);
+		 System.out.println("-------------排序测试1------------");
+		 System.out.println(stuTreeSet.toString());		
+		 
+		 TreeSet<Student2> stuTreeSet2 = new TreeSet<Student2>();
+		 stuTreeSet2.add(student3_1);
+		 stuTreeSet2.add(student3_2);
+		 stuTreeSet2.add(student3_3);
+		 stuTreeSet2.add(student3_4);
+		 stuTreeSet2.add(student3_5);
+		 System.out.println("-------------排序测试2------------");
+		 System.out.println(stuTreeSet2.toString());			 
+		 
 	}
 }
