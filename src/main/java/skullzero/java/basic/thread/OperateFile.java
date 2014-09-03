@@ -19,7 +19,7 @@ public class OperateFile implements Runnable
 		}
 		else if(os.indexOf("Mac OS") != -1)
 		{
-			testFile = "/Users/onion/Documents/Development/temp/ThreadTesting";
+			testFile = "/Users/onion/Documents/Development/temp/ThreadTesting2";
 		}
 		
 		this.threadName = threadName;
