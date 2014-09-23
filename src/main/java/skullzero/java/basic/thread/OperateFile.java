@@ -22,7 +22,7 @@ public class OperateFile implements Runnable
 			testFile = "/Users/onion/Documents/Development/temp/ThreadTesting2";
 		}
 		
-		this.threadName = threadName;
+		this.threadName = threadName; 
 	}
 	
 	public void writeFile()
