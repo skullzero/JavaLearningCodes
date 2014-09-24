@@ -6,11 +6,66 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<name>MyLearningCodes</name>
 
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.1.6.RELEASE</version>
+	</parent>
+
 	<dependencies>						
 		<dependency>
-   			<groupId>junit</groupId>
-    		<artifactId>junit</artifactId>
-    		<version>4.12-beta-1</version>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12-beta-1</version>
 		</dependency>
+		<!-- tag::jetty[] -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jetty</artifactId>
+		</dependency>
+		<!-- end::jetty[] -->
+		<!-- tag::actuator[] -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>		
+		<!-- end::actuator[] -->
+
+		<!--  
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-core</artifactId>
+		    <version>3.2.11.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context</artifactId>
+		    <version>3.2.11.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot</artifactId>
+		    <version>1.1.6.RELEASE</version>
+		</dependency>		
+		-->						
 	</dependencies>
+	
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>	
 </project>
