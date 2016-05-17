@@ -79,7 +79,7 @@ public class TestStringAPI
         sbuffer.append("This is a test");
         sbuffer.append(" case.");
         System.out.println(s.contentEquals(sbuffer));
-        System.out.println(s.equals(sbuffer));	//equals比较的对象必须是String类型
+        System.out.println(s.equals(sbuffer));	//equals方法中会判断比较的对象是不是String类型
         
         
 	}
