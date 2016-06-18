@@ -63,7 +63,6 @@ public class Student2 implements Comparable<Student2>
 		return hash;		
 	}	
 	
-	@Override
 	/*
 	 * Collections的sort()方法要求被排序的对象，必须实现java.lang.Comparable接口的compareTo()方法
 	 * 该方法必须返回大于 0、 等于 0 或小于 0 的数

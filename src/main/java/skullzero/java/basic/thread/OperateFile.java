@@ -45,7 +45,7 @@ public class OperateFile implements Runnable
 		}
 	}
 	
-	@Override
+
 	public void run()
 	{
 		writeFile();
