@@ -12,6 +12,8 @@ import java.io.*;
  * BufferedInputStream
  * InputStreamReader
  * 
+ * Java IO的各种流是阻塞的。这意味着，当一个线程调用read() 或 write()时，该线程被阻塞，
+ * 直到有一些数据被读取，或数据完全写入。该线程在此期间不能再干任何事情了。 
  */
 
 public class TestStream 
