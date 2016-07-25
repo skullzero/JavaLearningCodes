@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="personalClient" class="onion.open.spring.ioc.PersonalClient"/>
+	<bean id="coorperationClient" class="onion.open.spring.ioc.CoorperationClient"/>
+	<bean id="clientManager" class="onion.open.spring.ioc.ClientManager">
+		<!-- 构造函数注入 -->
+		<constructor-arg ref="personalClient"/>
+	</bean>
+</beans>
