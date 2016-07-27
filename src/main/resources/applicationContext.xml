@@ -8,5 +8,7 @@
 	<bean id="clientManager" class="onion.open.spring.ioc.ClientManager">
 		<!-- 构造函数注入 -->
 		<constructor-arg ref="personalClient"/>
+		<!-- setter 属性注入 -->
+		<property name="client2" ref="coorperationClient"></property>
 	</bean>
 </beans>

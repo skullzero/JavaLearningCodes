@@ -12,5 +12,6 @@ public class TestIoC
 		BeanFactory factory = new ClassPathXmlApplicationContext("applicationContext.xml");
 		ClientManager clientM = (ClientManager)factory.getBean("clientManager");
 		clientM.addNewClient();
+		clientM.addNewClient2();
 	}
 }
