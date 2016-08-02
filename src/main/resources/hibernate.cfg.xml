@@ -9,5 +9,8 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/onion</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.dialect">MySQL5</property>
+ 
+     	<mapping class ="onion.open.hibernate.entity.User"/>
+     	<mapping class ="onion.open.hibernate.entity.Group"/>   
     </session-factory>
 </hibernate-configuration>

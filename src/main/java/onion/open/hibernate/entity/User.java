@@ -1,12 +1,15 @@
-// default package
-// Generated 2016-8-1 23:28:45 by Hibernate Tools 4.3.4.Final
+package onion.open.hibernate.entity;
+// Generated 2016-8-2 22:44:34 by Hibernate Tools 4.3.4.Final
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,19 +22,19 @@ import javax.persistence.TemporalType;
 public class User implements java.io.Serializable {
 
 	private Integer id;
+	private Group group;
 	private String username;
 	private String psw;
 	private Date expired;
-	private Integer groupId;
 
 	public User() {
 	}
 
-	public User(String username, String psw, Date expired, Integer groupId) {
+	public User(Group group, String username, String psw, Date expired) {
+		this.group = group;
 		this.username = username;
 		this.psw = psw;
 		this.expired = expired;
-		this.groupId = groupId;
 	}
 
 	@Id
@@ -44,6 +47,16 @@ public class User implements java.io.Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "group_id")
+	public Group getGroup() {
+		return this.group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
 	}
 
 	@Column(name = "username", length = 45)
@@ -72,15 +85,6 @@ public class User implements java.io.Serializable {
 
 	public void setExpired(Date expired) {
 		this.expired = expired;
-	}
-
-	@Column(name = "group_id")
-	public Integer getGroupId() {
-		return this.groupId;
-	}
-
-	public void setGroupId(Integer groupId) {
-		this.groupId = groupId;
 	}
 
 }
