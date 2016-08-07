@@ -1,5 +1,5 @@
 package onion.open.hibernate.entity;
-// Generated 2016-8-2 22:44:34 by Hibernate Tools 4.3.4.Final
+// Generated 2016-8-7 11:31:47 by Hibernate Tools 4.3.4.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,11 +19,13 @@ import javax.persistence.Table;
 @Table(name = "group", catalog = "onion")
 public class Group implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3787892631365051895L;
 	private Integer id;
 	private String groupName;
-	//注意所有关于users的自动生成时没有使用泛型，会下面这个报错
-	//org.hibernate.AnnotationException: Collection has neither generic type or OneToMany.targetEntity()
-	private Set<User> users = new HashSet(0);
+	private Set<User> users = new HashSet<User>(0);
 
 	public Group() {
 	}

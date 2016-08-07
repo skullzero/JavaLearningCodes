@@ -1,5 +1,5 @@
 package onion.open.hibernate.entity;
-// Generated 2016-8-2 22:44:34 by Hibernate Tools 4.3.4.Final
+// Generated 2016-8-7 11:31:47 by Hibernate Tools 4.3.4.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -23,18 +23,22 @@ public class User implements java.io.Serializable {
 
 	private Integer id;
 	private Group group;
+	private IdInfo idInfo;
 	private String username;
 	private String psw;
 	private Date expired;
+	private Integer driverId;
 
 	public User() {
 	}
 
-	public User(Group group, String username, String psw, Date expired) {
+	public User(Group group, IdInfo idInfo, String username, String psw, Date expired, Integer driverId) {
 		this.group = group;
+		this.idInfo = idInfo;
 		this.username = username;
 		this.psw = psw;
 		this.expired = expired;
+		this.driverId = driverId;
 	}
 
 	@Id
@@ -57,6 +61,16 @@ public class User implements java.io.Serializable {
 
 	public void setGroup(Group group) {
 		this.group = group;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "identity_id")
+	public IdInfo getIdInfo() {
+		return this.idInfo;
+	}
+
+	public void setIdInfo(IdInfo idInfo) {
+		this.idInfo = idInfo;
 	}
 
 	@Column(name = "username", length = 45)
@@ -85,6 +99,15 @@ public class User implements java.io.Serializable {
 
 	public void setExpired(Date expired) {
 		this.expired = expired;
+	}
+
+	@Column(name = "driver_id")
+	public Integer getDriverId() {
+		return this.driverId;
+	}
+
+	public void setDriverId(Integer driverId) {
+		this.driverId = driverId;
 	}
 
 }

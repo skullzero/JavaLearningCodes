@@ -2,8 +2,11 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-	<table-filter match-catalog="onion" match-name="group" />
 	<table-filter match-catalog="onion" match-name="user" />
-	<table catalog="onion" name="user"></table>
+	<table-filter match-catalog="onion" match-name="id_info" />
+	<table-filter match-catalog="onion" match-name="group" />
+	<table-filter match-name="driver_info" match-catalog="onion"></table-filter>
+	<table catalog="onion" name="id_info"></table>
 	<table catalog="onion" name="group"></table>
+	<table catalog="onion" name="user"></table>
 </hibernate-reverse-engineering>
