@@ -5,8 +5,12 @@
 	<table-filter match-catalog="onion" match-name="user" />
 	<table-filter match-catalog="onion" match-name="id_info" />
 	<table-filter match-catalog="onion" match-name="group" />
-	<table-filter match-name="driver_info" match-catalog="onion"></table-filter>
+	<table-filter match-catalog="onion" match-name="role" ></table-filter>
+	<table-filter match-catalog="onion" match-name="user_role" ></table-filter>
+	
 	<table catalog="onion" name="id_info"></table>
 	<table catalog="onion" name="group"></table>
 	<table catalog="onion" name="user"></table>
+	<table catalog="onion" name="role"></table>
+	<table catalog="onion" name="user_role"></table>
 </hibernate-reverse-engineering>

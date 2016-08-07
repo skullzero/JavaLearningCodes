@@ -12,6 +12,14 @@ import java.util.*;
 /*
  * 1. 当遇到错误“xxxxreferences an unknown entityxxxxxx”，检查配置文件中是否已经定义了entity
  * 2. 工具生成的默认都是双向关系
+ *    从User到Group即多对一的关系，从Group到User即一对多的关系
+ *    User和IdInfo是一对一的关系
+ * 3. 单向和双向只影响数据的加载，并不影响数据的存储。
+ *    不论是一对一，一对多还是多对多，单向和双向生成的数据库表是一样，单向和双向的不同是由对象模型决定的。
+ * 4. 一对一关联映射是多对一关联映射的特例，只是在“多”的一端加上唯一的限制之后，用来表示一对一的关联关系。
+ * 5. 多对多关联映射是一对多关联映射的特例，它们都是使用集合来表示多的关系。
+ * 6. 多对多关联不论是单向关联还是双向关联都是通过第三张表，将两个表中的主键放到第三张做一个关联。用第三张表来解决可能会造成数据冗余的问题。
+ *    例如下面例子中的user_role表,在entity User和Role中都有和user_role的配置。
  */
 
 public class TestHibernate 
@@ -41,6 +49,13 @@ public class TestHibernate
 			System.out.println("======one to one， from User to IdInfo======");
 			System.out.println("username=" + user.getUsername());
 			System.out.println("id number=" + user.getIdInfo().getIdentityNum());
+			
+			//Many-To-Many
+			System.out.println("======Many to Many， from User to Role======");
+			for(Role role : user.getRoles())
+			{
+				System.out.println("role=" + role.getRoleName());
+			}
 		}
 		
 		//One-To-One(IdInfo-To-User)

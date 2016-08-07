@@ -12,6 +12,7 @@
  
      	<mapping class ="onion.open.hibernate.entity.User"/>
      	<mapping class ="onion.open.hibernate.entity.Group"/>
-     	<mapping class ="onion.open.hibernate.entity.IdInfo"/>  
+     	<mapping class ="onion.open.hibernate.entity.IdInfo"/> 
+     	<mapping class ="onion.open.hibernate.entity.Role"/>  
     </session-factory>
 </hibernate-configuration>
