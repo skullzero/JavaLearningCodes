@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.Query;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.boot.registry.*;
+import org.hibernate.Transaction;
 
 import onion.open.hibernate.entity.*;
 import java.util.*;
@@ -70,6 +71,15 @@ public class TestHibernate
 				System.out.println("username="+user.getUsername());	
 			}
 		}
+		
+		//insert data
+		System.out.println("======Insert data to Table Role======");
+		Role newRole = new Role();
+		newRole.setRoleName("Insert_Test_1");
+		Transaction tran = session.beginTransaction();
+		session.save(newRole);
+		tran.commit();
+		
 		
 	}
 }
