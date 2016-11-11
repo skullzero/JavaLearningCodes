@@ -4,25 +4,15 @@ import java.io.*;
 
 public class OperateFile implements Runnable
 {
-	private String testFile;
-	private String os;
 	private StringReader sr;
 	private char[] charArray;
 	private String threadName;
+	private Writer out;
 	
-	public OperateFile(String threadName)
+	public OperateFile(String threadName, Writer out)
 	{
-		os = System.getProperty("os.name");
-		if(os.indexOf("Windows") != -1)
-		{
-			testFile  = "C:/temp/ThreadTesting.txt";
-		}
-		else if(os.indexOf("Mac OS") != -1)
-		{
-			testFile = "/Users/onion/Documents/Development/temp/ThreadTesting2";
-		}
-		
-		this.threadName = threadName; 
+		this.threadName = threadName;
+		this.out = out;
 	}
 	
 	public void writeFile()
@@ -31,13 +21,14 @@ public class OperateFile implements Runnable
 		{
 			System.out.println("-----" + threadName + "-----");
 			sr = new StringReader("-----" + threadName + "-----");
-			charArray = new char[30];
+			charArray = new char[20];
 			sr.read(charArray);
-			
-			Writer out = new FileWriter(testFile);
-		    out.write(charArray);
-			out.flush();
-			out.close();
+
+			synchronized (out) 
+			{
+				System.out.println("----- wirte " + threadName);
+				out.write(charArray);
+			}
 		}
 		catch(IOException e)
 		{
