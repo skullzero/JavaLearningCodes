@@ -1,4 +1,4 @@
-package onion.basic.thread;
+package onion.basic.thread.tclass;
 
 import java.io.*;
 
@@ -19,16 +19,18 @@ public class OperateFile implements Runnable
 	{
 		try
 		{
-			System.out.println("-----" + threadName + "-----");
-			sr = new StringReader("-----" + threadName + "-----");
+			sr = new StringReader(threadName);
 			charArray = new char[20];
 			sr.read(charArray);
 
+			System.out.println("----- before synchronized " + threadName);
 			synchronized (out) 
 			{
 				System.out.println("----- wirte " + threadName);
 				out.write(charArray);
 			}
+			System.out.println("----- after synchronized " + threadName);
+			
 		}
 		catch(IOException e)
 		{
