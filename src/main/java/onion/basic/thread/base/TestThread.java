@@ -1,8 +1,6 @@
-package onion.basic.thread;
+package onion.basic.thread.base;
 
 import java.io.*;
-
-import onion.basic.thread.tclass.OperateFile;
 
 /*
  * 这个例子演示了多线程中的状态转换，包含

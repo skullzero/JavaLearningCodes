@@ -1,4 +1,4 @@
-package onion.basic.thread.tclass;
+package onion.basic.thread.base;
 
 import java.io.*;
 
@@ -24,6 +24,7 @@ public class OperateFile implements Runnable
 			sr.read(charArray);
 
 			System.out.println("----- before synchronized " + threadName);
+			//以共享自由out作为监视器
 			synchronized (out) 
 			{
 				System.out.println("----- wirte " + threadName);
