@@ -1,7 +1,5 @@
 package onion.basic.thread.join;
 
-import org.apache.tools.ant.taskdefs.Sleep;
-
 public class ThreadB implements Runnable
 {
 	public void run()

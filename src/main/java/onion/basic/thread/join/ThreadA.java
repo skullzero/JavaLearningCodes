@@ -10,6 +10,7 @@ public class ThreadA implements Runnable
 		try 
 		{
 			//使ThreadB加入到ThreadA中，并优先执行
+			//Thread A暂停
 			threadb.join();			
 		} 
 		catch (Exception e) 
