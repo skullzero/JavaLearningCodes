@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomerResponse>
+	<CustomerID>123456</CustomerID>
+	<CustomerName>WulaWula</CustomerName>
+	<BirthDate>1982-02-02</BirthDate>
+</CustomerResponse>

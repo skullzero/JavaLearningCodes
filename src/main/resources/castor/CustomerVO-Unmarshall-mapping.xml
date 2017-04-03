@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapping>
+	<class name="onion.open.castor.CustomerVO" auto-complete='true'>
+		<map-to xml='CustomerResponse'/>
+		<field name='customerID'>
+			<bind-xml name='CustomerID' node='element'/>
+		</field>
+		<field name='customerName'>
+			<bind-xml name='CustomerName' node='element'/>
+		</field>
+		<field name='birthDate'>
+			<bind-xml name='BirthDate' node='element'/>
+		</field>				
+	</class>
+</mapping>
