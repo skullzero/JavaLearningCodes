@@ -110,12 +110,12 @@ c.debug: 当此属性设置为true时，将打印出logback内部日志信息，
 * \<file\> 被写入的文件名，可以是相对目录，也可以是绝对目录，如果上级目录不存在会自动创建，没有默认值。
 * \<append\> 如果是 true，日志被追加到文件结尾，如果是 false，清空现存文件，默认是true。	
 * \<rollingPolicy\> 当发生滚动时，决定RollingFileAppender的行为，涉及文件移动和重命名。属性class定义具体的滚动策略类
-**class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"时，这是最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动。有以下子节点**
-	* \<fileNamePattern\> 必要节点，包含文件名及“%d”转换符，“%d”可以包含一个java.text.SimpleDateFormat指定的时间格式，如：%d{yyyy-MM}。如果直接使用 %d，默认格式是 yyyy-MM-dd。RollingFileAppender的file字节点可有可无，通过设置file，可以为活动文件和归档文件指定不同位置，当前日志总是记录到file指定的文件（活动文件），活动文件的名字不会改变；
+	* **class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"时，这是最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动。有以下子节点**
+		* \<fileNamePattern\> 必要节点，包含文件名及“%d”转换符，“%d”可以包含一个java.text.SimpleDateFormat指定的时间格式，如：%d{yyyy-MM}。如果直接使用 %d，默认格式是 yyyy-MM-dd。RollingFileAppender的file字节点可有可无，通过设置file，可以为活动文件和归档文件指定不同位置，当前日志总是记录到file指定的文件（活动文件），活动文件的名字不会改变；
 如果没设置file，活动文件的名字会根据fileNamePattern 的值，每隔一段时间改变一次。“/”或者“\”会被当做目录分隔符。	
-	* \<maxHistory\> 可选节点，控制保留的归档文件的最大数量，超出数量就删除旧文件。假设设置每个月滚动，且\<maxHistory\>是6，则只保存最近6个月的文件，删除之前的旧文件。注意，删除旧文件是，那些为了归档而创建的目录也会被删除。
-**class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy" 查看当前活动文件的大小，如果超过指定大小会告知RollingFileAppender 触发当前活动文件滚动。只有一个节点**
-　　　　　　* \<maxFileSize\> 这是活动文件的大小，默认值是10MB。
+		* \<maxHistory\> 可选节点，控制保留的归档文件的最大数量，超出数量就删除旧文件。假设设置每个月滚动，且\<maxHistory\>是6，则只保存最近6个月的文件，删除之前的旧文件。注意，删除旧文件是，那些为了归档而创建的目录也会被删除。
+	* **class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy" 查看当前活动文件的大小，如果超过指定大小会告知RollingFileAppender 触发当前活动文件滚动。只有一个节点**
+		* \<maxFileSize\> 这是活动文件的大小，默认值是10MB。
 * \<prudent\> 当为true时，不支持FixedWindowRollingPolicy。支持TimeBasedRollingPolicy，但是有两个限制，1不支持也不允许文件压缩，2不能设置file属性，必须留空。	
 * \<triggeringPolicy\> 告知 RollingFileAppender 合适激活滚动。class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy" 根据固定窗口算法重命名文件的滚动策略。有以下子节点
 	* \<minIndex\> 窗口索引最小值
@@ -172,7 +172,8 @@ c.debug: 当此属性设置为true时，将打印出logback内部日志信息，
 ```
 * \<encoder\> 对记录事件进行格式化。负责两件事，一是把日志信息转换成字节数组，二是把字节数组写入到输出流。
 PatternLayoutEncoder 是唯一有用的且默认的encoder ，有一个\<pattern\>节点，用来设置日志的输入格式。使用“%”加“转换符”方式，如果要输出“%”，则必须用“\”对“\%”进行转义。	
->**6.** 子节点\<loger\>用来设置某一个包或具体的某一个类的日志打印级别、以及指定\<appender\>。\<loger\>仅有一个name属性，一个可选的level和一个可选的addtivity属性。
+>**6.子节点\<loger\>** 
+>>用来设置某一个包或具体的某一个类的日志打印级别、以及指定\<appender\>。\<loger\>仅有一个name属性，一个可选的level和一个可选的addtivity属性。
 可以包含零个或多个\<appender-ref\>元素，标识这个appender将会添加到这个loger
 * name  用来指定受此loger约束的某一个包或者具体的某一个类。
 * level 用来设置打印级别，大小写无关：TRACE, DEBUG, INFO, WARN, ERROR, ALL和OFF，还有一个特俗值INHERITED或者同义词NULL，代表强制执行上级的级别。 如果未设置此属性，那么当前loger将会继承上级的级别。
