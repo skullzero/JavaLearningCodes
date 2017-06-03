@@ -12,7 +12,7 @@ import org.slf4j.Logger;
  * 
  * 级别排序为： TRACE < DEBUG < INFO < WARN < ERROR
  * 
- * 配置文件在resources文件夹下
+ * 配置文件logback.xml在resources文件夹下
  */
 
 public class TestLogback 
