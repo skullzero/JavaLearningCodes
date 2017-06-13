@@ -34,7 +34,8 @@ public class TestCastor
 			customerVO = (CustomerVO)unmar.unmarshal(new InputSource(new FileReader("/Users/onion/git/JavaLearningCodes/target/classes/castor/CustomerData.xml")));
 			System.out.println(customerVO.getCustomerID() + " - " + 
 								customerVO.getCustomerName() + " - " +
-								customerVO.getBirthDate());
+								customerVO.getBirthDate() + "-" +
+								customerVO.getAddressList().get(0).getType());
 			
 			//3.改造对象数据
 			customerVO.setCustomerID("112233");

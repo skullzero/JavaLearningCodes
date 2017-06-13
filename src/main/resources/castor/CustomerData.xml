@@ -3,4 +3,12 @@
 	<CustomerID>123456</CustomerID>
 	<CustomerName>WulaWula</CustomerName>
 	<BirthDate>1982-02-02</BirthDate>
+	<Address>
+		<Type>Home</Type>
+		<Where>abc123</Where>
+	</Address>
+	<Address>
+		<Type>Office</Type>
+		<Where>def456</Where>
+	</Address>	
 </CustomerResponse>

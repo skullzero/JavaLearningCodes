@@ -11,6 +11,20 @@
 		</field>
 		<field name='birthDate'>
 			<bind-xml name='BirthDate' node='element'/>
-		</field>				
+		</field>	
+		
+		<field name='addressList' type='onion.open.castor.Address' collection='arraylist'>
+			<bind-xml name='Address' node='element'/>
+		</field>			
 	</class>
+	
+	<class name="onion.open.castor.Address" auto-complete='true'>
+		<map-to xml='Address'/>
+		<field name='type'>
+			<bind-xml name='Type' node='element'/>
+		</field>
+		<field name='where'>
+			<bind-xml name='Where' node='element'/>
+		</field>			
+	</class>	
 </mapping>
