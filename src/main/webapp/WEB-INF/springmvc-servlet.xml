@@ -3,22 +3,58 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<!-- 开发中传统方式和注解方式任选其一 -->
+	
+	<!-- =============== 传统方式 begin =============== -->
+	
 	<!-- HandlerMapping -->
-	<bean
-		class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
+	<!-- 表示将请求的URL和Bean名字映射，如URL为 “上下文/hello”，则Spring配置文件必须有一个名字为“/hello”的Bean，上下文默认忽略。 -->
+	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
 
 	<!-- HandlerAdapter -->
-	<bean
-		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+	<!-- 
+		表示所有实现了org.springframework.web.servlet.mvc.Controller接口的Bean可以作为Spring Web MVC中的处理器。
+		如果需要其他类型的处理器可以通过实现HandlerAdapter来解决。 
+	-->
+	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
 
+	<!-- name="/hello"：前边配置的BeanNameUrlHandlerMapping，表示如果请求的URL为 “上下文/hello”，则将会交给该Bean进行处理。 -->
+	<bean name="/hello" class="onion.open.springmvc.controller.HelloWorldController" />
+	
+	<!-- =============== 传统方式 end =============== -->
+
+	<!-- ================================================================================================================ -->
+
+	<!-- =============== 基于注解到开发方式的配置 begin =============== -->
+	
+	<!-- Spring3.1开始的注解 HandlerMapping --> 
+	<!-- 
+		注解式处理器映射会扫描spring容器中的bean，发现bean实现类上拥有
+		@Controller或@RequestMapping注解的bean，并将它们作为处理器。 
+	--> 
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>  
+	
+	<!-- Spring3.1开始的注解 HandlerAdapter -->  
+	<!-- 注解式处理器适配器会通过反射调用相应的功能处理方法（方法上拥有@RequestMapping注解） -->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/> 
+	
+	<bean name="hello2" class="onion.open.springmvc.controller.HelloWorldAnnotationController" />
+	
+	<!-- =============== 基于注解到开发方式 end ===============  -->
+	
+	
+	<!-- ================================================================================================================ -->	
+	
 	<!-- ViewResolver -->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
+	<!-- 
+		InternalResourceViewResolver：用于支持Servlet、JSP视图解析；
+   		viewClass：JstlView表示JSP模板页面需要使用JSTL标签库，classpath中必须包含jstl的相关jar包；
+    		prefix和suffix：查找视图页面的前缀和后缀（前缀[逻辑视图名]后缀），比如传进来的逻辑视图名为hello，则该该jsp视图页面应该存放在“WEB-INF/jsp/hello.jsp”；
+	-->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-
-	<bean name="/hello" class="onion.open.springmvc.controller.HelloWorldController" />
+	
 </beans>
