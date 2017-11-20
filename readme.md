@@ -7,7 +7,8 @@
 * eclipse
 >选中项目 --> 右键 --> Run As --> Maven build...，在 Goals 栏输入 jetty:run
 * 访问
->http://localhost:38080/java-learning-codes/hello
+>http://localhost:38080/java-learning-codes/mvc/hello
+>Restful Service http://localhost:38080/java-learning-codes/rs/xxx
 
 
 ### 运行h2 console
