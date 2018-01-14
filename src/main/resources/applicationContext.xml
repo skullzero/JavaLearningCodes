@@ -11,4 +11,26 @@
 		<!-- setter 属性注入 -->
 		<property name="client2" ref="coorperationClient"></property>
 	</bean>
+	
+	<!-- for H2 database -->
+   <bean id="dataSource" class="org.h2.jdbcx.JdbcConnectionPool" destroy-method="dispose">
+   	<constructor-arg>
+    		<bean class="org.h2.jdbcx.JdbcDataSource">
+	        <!-- 内存模式 -->
+	        <property name="URL" value="jdbc:h2:~/onion" />
+	        <property name="user" value="sa" />
+	        <property name="password" value="sa" />
+        </bean>
+  	</constructor-arg>
+   </bean>
+   
+	<!-- 配置jdbcTemplate -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean> 
+	
+	<bean id="userJdbcDAO" class="onion.open.spring.db.UserJdbcDAO">
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>  
+
 </beans>
