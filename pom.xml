@@ -62,6 +62,23 @@
 					</arguments>
 				</configuration>
 			</plugin>
+			
+			<!-- groovy -->
+			<plugin>
+			    <artifactId>maven-compiler-plugin</artifactId>
+			    <version>3.3</version>
+			    <configuration>
+			        <compilerId>groovy-eclipse-compiler</compilerId>
+			        <verbose>true</verbose>
+			    </configuration>
+			    <dependencies>
+			        <dependency>
+			            <groupId>org.codehaus.groovy</groupId>
+			            <artifactId>groovy-eclipse-compiler</artifactId>
+			            <version>2.7.0-01</version>
+			        </dependency>
+			    </dependencies>
+			</plugin>			
 		</plugins>
 	</build>
 
@@ -192,6 +209,18 @@
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-orm</artifactId>
 		    <version>3.2.11.RELEASE</version>
-		</dependency>					
+		</dependency>
+		<!-- groovy -->	
+		<dependency>
+		    <groupId>org.codehaus.groovy</groupId>
+		    <artifactId>groovy-eclipse-compiler</artifactId>
+		    <version>2.9.2-01</version>
+		    <type>maven-plugin</type>
+		</dependency>
+		<dependency>
+		    <groupId>org.codehaus.groovy</groupId>
+		    <artifactId>groovy-eclipse-batch</artifactId>
+		    <version>2.4.3-01</version>
+		</dependency>						
 	</dependencies>
 </project>

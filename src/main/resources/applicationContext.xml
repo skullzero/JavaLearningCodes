@@ -24,13 +24,19 @@
   	</constructor-arg>
    </bean>
    
-	<!-- 配置jdbcTemplate -->
+	<!-- JdbcTemplate 支持最简单的JDBC数据库访问及简单的索引参数查询-->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource"/>
 	</bean> 
-	
 	<bean id="userJdbcDAO" class="onion.open.spring.db.UserJdbcDAO">
 		<property name="jdbcTemplate" ref="jdbcTemplate"/>
 	</bean>  
-
+	
+	<!-- SimpleJdbcTemplate 更常用，该模板类利用Java5以后的一些特性，如自动装箱、泛型以及可变参数列表来简化JDBC模板的使用  -->
+	<bean id="simpleJdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate">
+		<constructor-arg ref="dataSource" />
+	</bean> 		
+	<bean id="roleJdbcDAO" class="onion.open.spring.db.RoleJdbcDAO">
+		<property name="jdbcTemplate" ref="simpleJdbcTemplate"/>
+	</bean> 
 </beans>
