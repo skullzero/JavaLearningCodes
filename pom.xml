@@ -91,12 +91,12 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>3.2.11.RELEASE</version>
+			<version>[4.3.17,)</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>3.2.11.RELEASE</version>
+			<version>[4.3.17,)</version>
 		</dependency>
 		<dependency>
 			<groupId>cglib</groupId>
@@ -130,7 +130,7 @@
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-server</artifactId>
-			<version>9.4.3.v20170317</version>
+			<version>[9.4.17.v20190418,)</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
@@ -203,12 +203,12 @@
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-jdbc</artifactId>
-		    <version>3.2.11.RELEASE</version>
+		    <version>[4.3.17,)</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-orm</artifactId>
-		    <version>3.2.11.RELEASE</version>
+		    <version>[4.3.17,)</version>
 		</dependency>
 		<!-- groovy -->	
 		<dependency>
